@@ -24,5 +24,8 @@ print(f'The answer to part 1: The depths increases {depth_increase_counter_part_
 print(f'The answer to part 2: The depths increases {depth_increase_counter_part_2} times')
 
 
-# test = [0, 1, 2]
-# print(sum(test[0:8]))  # Why does this not result in an index error????
+test = [0, 1, 2]
+print(sum(test[0:8]))  # Why does this not result in an index error????
+
+test_2 = test[7:8]
+print(test_2)

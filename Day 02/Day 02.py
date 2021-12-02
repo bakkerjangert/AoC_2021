@@ -9,16 +9,17 @@ part_2 = {'depth': 0,
           'aim': 0}
 
 for line in lines:
+    value = int(line.split(' ')[-1])
     if 'up' in line:
-        part_1['depth'] -= int(line.split(' ')[-1])
-        part_2['aim'] -= int(line.split(' ')[-1])
+        part_1['depth'] -= value
+        part_2['aim'] -= value
     elif 'for' in line:
-        part_1['horizontal position'] += int(line.split(' ')[-1])
-        part_2['horizontal position'] += int(line.split(' ')[-1])
-        part_2['depth'] += part_2['aim'] * int(line.split(' ')[-1])
+        part_1['horizontal position'] += value
+        part_2['horizontal position'] += value
+        part_2['depth'] += part_2['aim'] * value
     elif 'down' in line:
-        part_1['depth'] += int(line.split(' ')[-1])
-        part_2['aim'] += int(line.split(' ')[-1])
+        part_1['depth'] += value
+        part_2['aim'] += value
 
 print(f'The answer to part 1: Depth ({part_1["depth"]}) x Position ({part_1["horizontal position"]})'
       f' = {part_1["depth"] * part_1["horizontal position"]}')
