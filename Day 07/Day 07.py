@@ -25,7 +25,7 @@ for pos in range(start_point + 1, end_point):
         crabs_left += delta_crabs
         crabs_right -= delta_crabs
 
-print(f'Part 1: A minimu of {fuel} fuel is required to reach position {position}')
+print(f'Part 1: A minimum of {fuel} fuel is required to reach position {position}')
 
 fuel_consumption = 0
 fuel_per_delta = {0: 0}
@@ -34,10 +34,10 @@ for delta in range(1, end_point + 1):
     fuel_per_delta[delta] = fuel_consumption
 
 fuel_per_position = dict()
-for pos in range(start_point, end_point):
+for pos in range(start_point, end_point + 1):
     current_fuel = 0
     for crab in crabs:
         current_fuel += fuel_per_delta[abs(pos - crab)]
     fuel_per_position[pos] = current_fuel
 
-print(f'Part 2: A minimu of {min(fuel_per_position.values())} fuel is required')
+print(f'Part 2: A minimum of {min(fuel_per_position.values())} fuel is required')
