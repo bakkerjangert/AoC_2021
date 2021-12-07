@@ -37,5 +37,4 @@ for i in range(9):
     for j in range(9):
         answer_part_2 += fish_dict[i] * sample_dict_128[128 - i][j] * len(sample_dict[128 - j])
 
-print(f'Part 2: There are {answer_part_2} fishes after 256 days (calulated as 2 x 128 days)')
-
+print(f'Part 2: There are {answer_part_2} fishes after 256 days (calculated as 2 x 128 days)')
