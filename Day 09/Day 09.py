@@ -78,6 +78,8 @@ if print_part_2:
             coord = (x, y)
             if any(coord in sl for sl in basins):
                 color = 'yellow'
+            if coord in coords:
+                color = 'red'
             print(colored(grid[y][x], color), end='')
         print('')
 print(f'The answer to part 2 = {answer_part_2}')
