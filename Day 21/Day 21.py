@@ -1,12 +1,14 @@
 from copy import deepcopy
+import time
 
 class Player():
     def __init__(self, position, name):
         self.name = name
         self.position = position
         self.score = 0
-        self.rolls = []
+        self.realities = 1
 
+start = time.time()
 
 # players = [Player(4, 'Player 1'), Player(8, 'Player 2')]  # Test input
 players = [Player(6, 'Player 1'), Player(10, 'Player 2')]
@@ -34,17 +36,12 @@ while True:
         print(f'The answer to part 1 = {players[turn % 2].score} x {throws} = {players[turn % 2].score * throws}')
         break
 
-base = (1, 1, 1)
-data = []
-
 throws = {3: 1, 4: 3, 5: 6, 6: 7, 7: 6, 8: 3, 9: 1}
-
-
 player_1_ongoing, player_2_ongoing = dict(), dict()
 player_1_finished, player_2_finished = dict(), dict()
 
-player_1_ongoing[0], player_2_ongoing[0] = [Player(4, 'Player 1')], [Player(8, 'Player 2')]  # Test input
-# player_1_ongoing[0], player_2_ongoing[0] = [Player(6, 'Player 1')], [Player(10, 'Player 2')]
+# player_1_ongoing[0], player_2_ongoing[0] = [Player(4, 'Player 1')], [Player(8, 'Player 2')]  # Test input
+player_1_ongoing[0], player_2_ongoing[0] = [Player(6, 'Player 1')], [Player(10, 'Player 2')]
 
 # Player 1
 turn = 1
@@ -58,7 +55,7 @@ while True:
                 new_position = 10
             player_copy.position = new_position
             player_copy.score += new_position
-            player_copy.rolls.append(throw)
+            player_copy.realities *= throws[throw]
             if player_copy.score >= 21:
                 if turn not in player_1_finished.keys():
                     player_1_finished[turn] = []
@@ -82,7 +79,7 @@ while True:
                 new_position = 10
             player_copy.position = new_position
             player_copy.score += new_position
-            player_copy.rolls.append(throw)
+            player_copy.realities *= throws[throw]
             if player_copy.score >= 21:
                 if turn not in player_2_finished.keys():
                     player_2_finished[turn] = []
@@ -94,35 +91,27 @@ while True:
         break
     turn += 1
 
-for key in player_2_ongoing.keys():
-    print(f'At round {key} there are {len(player_2_ongoing[key])} players 2 ongoing')
-
-for key in player_2_finished.keys():
-    print(f'At round {key} there are {len(player_2_finished[key])} players 2 finished')
 # Player 1 wins at [turn] --> Player 2 ongoing at [turn - 1]
 # Player 2 wins at [turn] --> Player 1 ongoing at [turn]
 
 wins_player_1 = 0
 for turn in player_1_finished.keys():
     for player_1 in player_1_finished[turn]:
+        if turn - 1 not in player_2_ongoing.keys():
+            continue
         for player_2 in player_2_ongoing[turn - 1]:
-            realities = 1
-            for number in player_1.rolls:
-                realities *= throws[number]
-            for number in player_2.rolls:
-                realities *= throws[number]
-            wins_player_1 += realities
+            wins_player_1 += player_1.realities * player_2.realities
 print(f'Player 1 wins {wins_player_1} times')
 
 wins_player_2 = 0
 for turn in player_2_finished.keys():
     for player_2 in player_2_finished[turn]:
+        if turn not in player_1_ongoing.keys():
+            continue
         for player_1 in player_1_ongoing[turn]:
-            realities = 1
-            for number in player_2.rolls:
-                realities *= throws[number]
-            for number in player_1.rolls:
-                realities *= throws[number]
-            wins_player_2 += realities
+            wins_player_2 += player_1.realities * player_2.realities
 print(f'Player 2 wins {wins_player_2} times')
-print(f'The answer to part 2 = {min(wins_player_1, wins_player_2)}')
+print(f'The answer to part 2 = {max(wins_player_1, wins_player_2)}')
+
+end = time.time()
+print(f'Finished in {end - start} seconds')
