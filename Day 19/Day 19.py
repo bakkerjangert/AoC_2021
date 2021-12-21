@@ -1,4 +1,7 @@
 from copy import deepcopy
+import time
+
+start = time.time()
 
 with open('input.txt') as f:
     lines = f.read().splitlines()
@@ -20,6 +23,7 @@ class Scanner():
         self.beacons = []
         self.range_min, self.range_max = [-1000, -1000, -1000], [1000, 1000, 1000]
         self.not_in_range = []
+        self.manhattan_distances = set()
         self.found_position = False
 
     def shift(self, delta):
@@ -47,6 +51,13 @@ class Scanner():
             new_beacons.append(new_beacon)
         self.beacons = new_beacons
 
+    def manhatan(self):
+        for i in range(len(self.beacons) - 1):
+            for j in range(i + 1, len(self.beacons)):
+                distance = 0
+                for k in range(3):
+                    distance += abs(self.beacons[i][k] - self.beacons[j][k])
+                self.manhattan_distances.add(distance)
 
 scanners, finished_scanners = list(), list()
 name = None
@@ -56,6 +67,8 @@ for line in lines:
         scanners.append(Scanner(name))
     elif ',' in line:
         scanners[-1].beacons.append(list(map(int, line.split(','))))
+for scanner in scanners:
+    scanner.manhatan()
 
 finished_scanners.append(scanners.pop(0))
 finished_scanners[0].found_position = True
@@ -69,6 +82,13 @@ while len(scanners) > 0:
                 continue
             if scanner_finished:
                 break
+            count = 0
+            for manhattan_distance in scanner.manhattan_distances:
+                if manhattan_distance in target_scanner.manhattan_distances:
+                    count += 1
+            if count < 11 + 10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1:
+                scanner.not_in_range.append(target_scanner.name)
+                continue
             for mask in masks:
                 if scanner_finished:
                     break
@@ -131,4 +151,7 @@ for i in range(len(finished_scanners)):
         if manhattan > answer_part_2:
             answer_part_2 = manhattan
 
+end = time.time()
+
 print(f'The answer to part 2 = {answer_part_2}')
+print(f'Finished in {end - start} seconds')
