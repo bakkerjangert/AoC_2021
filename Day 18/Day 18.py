@@ -1,4 +1,4 @@
-with open('up.txt') as f:
+with open('input.txt') as f:
     lines = f.read().splitlines()
 
 def addition(str1, str2):
@@ -108,7 +108,7 @@ for str2 in lines[1:]:
     reduced = False
     print(f'checking string {string}')
     while not reduced:
-        print(string)
+        # print(string)
         val = check_string(string)
         string, reduced = val[0], val[1]
     # print(f'Reduced string --> {string}')

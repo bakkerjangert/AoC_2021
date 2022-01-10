@@ -46,18 +46,18 @@ print(f'range vx = {range_vx} and range vy = {range_vy}')
 time_table_x = dict()
 for vx_start in range(range_vx[0], range_vx[1] + 1):
     gen_x = x_pos(vx_start)
-    print(f'-- vx_start = {vx_start} --')
+    # print(f'-- vx_start = {vx_start} --')
     time_table_x[vx_start] = []
     while True:
         val = next(gen_x)
-        print(val)
+        # print(val)
         if x_min <= val[0] <= x_max:
             time_table_x[vx_start].append(val[1])
         elif val[0] > x_max:
             break
         if val[1] > x_max:
             break
-    print(time_table_x[vx_start])
+    # print(time_table_x[vx_start])
     if len(time_table_x[vx_start]) == 0:
         del time_table_x[vx_start]
 
@@ -66,18 +66,18 @@ for vx_start in range(range_vx[0], range_vx[1] + 1):
 time_table_y = dict()
 for vy_start in range(range_vy[0], range_vy[1] + 1):
     gen_y = y_pos(vy_start)
-    print(f'-- vy_start = {vy_start} --')
+    # print(f'-- vy_start = {vy_start} --')
     time_table_y[vy_start] = []
     while True:
         val = next(gen_y)
-        print(val)
+        # print(val)
         if y_min <= val[0] <= y_max:
             time_table_y[vy_start].append(val[1])
         elif val[0] < y_min:
             break
         if val[1] > x_max:
             break
-    print(time_table_y[vy_start])
+    # print(time_table_y[vy_start])
     if len(time_table_y[vy_start]) == 0:
         del time_table_y[vy_start]
 

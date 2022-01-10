@@ -1,7 +1,7 @@
 from termcolor import colored
 import turtle
 
-with open('tweakers.txt') as f:
+with open('input.txt') as f:
     lines = f.read().splitlines()
 
 print_turtle = True
@@ -51,7 +51,7 @@ for y in range(boundaries['y']):
 
 # Turtle part 2
 if print_turtle:
-    scale = 3
+    scale = 15
     turtle.delay(0), turtle.hideturtle(), turtle.speed(7.5), turtle.tracer(0, 0), turtle.color('black'), turtle.width(0.7 * scale)
     delta_x, delta_y = -max(coords, key=lambda x: x[0])[0] // 2,  -max(coords, key=lambda x: x[1])[1] // 2
 

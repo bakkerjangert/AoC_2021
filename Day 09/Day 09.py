@@ -3,8 +3,8 @@ from termcolor import colored
 with open('input.txt') as f:
     lines = f.read().splitlines()
 
-print_part_1 = True
-print_part_2 = True
+print_part_1 = False
+print_part_2 = False
 
 grid = []
 grid.append([9] * (len(lines[0]) + 2))
