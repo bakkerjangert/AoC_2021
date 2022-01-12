@@ -1,0 +1,322 @@
+inp w
+# mul x 0
+# add x z
+# mod x 26
+# div z 1
+# add x 12
+# eql x w -> since w < 10 and x == 12 always false! so x set to 0
+# eql x 0
+# mul y 0
+# add y 25
+# mul y x
+# add y 1
+# mul z y --> z still 0
+# mul y 0
+# add y w
+# add y 6
+# mul y x
+# add z y
+
+x = 1 --> set below to 0 again below
+y = w(0) + 6
+z(0) = w(0) + 6
+
+inp w
+# mul x 0
+# add x z
+# mod x 26
+# div z 1
+# add x 11
+# eql x w --> again w(1) < 10 and x >= 11 --> always false
+# eql x 0
+# mul y 0
+# add y 25
+# mul y x
+# add y 1
+# mul z y
+# mul y 0
+# add y w
+# add y 12
+# mul y x
+# add z y
+
+# x = 1 -> set to 0 below
+y = w(1) + 12
+z(1) = z(0) * 26 + w(1) + 12
+
+inp w
+# mul x 0
+# add x z
+# mod x 26
+# div z 1
+# add x 10
+# eql x w
+# eql x 0
+# mul y 0
+# add y 25
+# mul y x
+# add y 1
+# mul z y
+# mul y 0
+# add y w
+# add y 5
+# mul y x
+# add z y
+
+x = 1
+y = w(2) + 5
+z(2) = z(1) * 26 + w(2) + 5
+
+inp w
+# mul x 0
+# add x z
+# mod x 26
+# div z 1
+# add x 10
+# eql x w
+# eql x 0
+# mul y 0
+# add y 25
+# mul y x
+# add y 1
+# mul z y
+# mul y 0
+# add y w
+# add y 10
+# mul y x
+# add z y
+
+x = 1
+y = w(2) + 10
+z(3) = z(2) * 26 + w(3) + 10
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -16
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 7
+mul y x
+add z y
+
+if z(3) % 26 - 16 == w(4):
+    z(4) = (z(3) // 26) * 26 + w(4) + 7
+else:
+    z(4) = z(3) // 26
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 14
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 0
+mul y x
+add z y
+
+z(5) = z(4) * 26 + w(4)
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 12
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 4
+mul y x
+add z y
+
+z(6) = z(5) * 26 + w(6) + 4
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -4
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 12
+mul y x
+add z y
+
+if z(6) % 26 - 4 == w(7):
+    z(7) = (z(6) // 26) * 26 + w(4) + 12
+else:
+    z(7) = z(6) // 26
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 15
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 14
+mul y x
+add z y
+
+z(8) = z(7) * 26 + w(8) + 14
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -7
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 13
+mul y x
+add z y
+
+if z(8) % 26 - 7 == w(9):
+    z(9) = (z(8) // 26) * 26 + w(9) + 13
+else:
+    z(9) = z(8) // 26
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -8
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 10
+mul y x
+add z y
+
+if z(9) % 26 - 8 == w(10):
+    z(10) = (z(9) // 26) * 26 + w(9) + 10
+else:
+    z(10) = z(9) // 26
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -4
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 11
+mul y x
+add z y
+
+if z(10) % 26 - 4 == w(11):
+    z(11) = (z(10) // 26) * 26 + w(11) + 11
+else:
+    z(11) = z(10) // 26
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -15
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 9
+mul y x
+add z y
+
+if z(11) % 26 - 15 == w(12):
+    z(12) = (z(11) // 26) * 26 + w(12) + 9
+else:
+    z(12) = z(11) // 26
+
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -8
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 9
+mul y x
+add z y
+
+if z(12) % 26 - 8 == w(13):
+    z(13) = (z(12) // 26) * 26 + w(13) + 9
+else:
+    z(13) = z(12) // 26
